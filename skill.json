@@ -1,0 +1,65 @@
+{
+  "name": "genpark-personal-agent-intermittent-hypoxia-hyperoxia-ihht-skill",
+  "version": "1.0.0",
+  "title": "Intermittent Hypoxia-Hyperoxia Therapy (IHHT) Protocol Simulator Skill",
+  "description": "IHHT cell renewal kinetics, hypoxia-inducible factor (HIF-1\u03b1) stabilization dose, normobaric hypoxic cycling schedule (10% O2 vs 36% O2). Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "personal-agent",
+  "topics": [
+    "ihht",
+    "hypoxia-therapy",
+    "mitophagy",
+    "hif1a",
+    "personal-agent",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "simulate_ihht_hypoxic_interval_dose",
+      "description": "Calculate cumulative hypoxic dose (min * %O2 drop) and target SpO2 desaturation plateau for mitochondrial renewal.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "hypoxic_fio2_pct": {
+            "type": "number"
+          },
+          "interval_duration_minutes": {
+            "type": "number"
+          },
+          "cycles_count": {
+            "type": "integer"
+          },
+          "user_baseline_spo2": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "hypoxic_fio2_pct",
+          "interval_duration_minutes",
+          "cycles_count"
+        ]
+      }
+    },
+    {
+      "name": "generate_ihht_session_safety_guards",
+      "description": "Generate automated heart rate and SpO2 safety cutoff thresholds to prevent ischemic decompensation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "resting_hr": {
+            "type": "number"
+          },
+          "age": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "resting_hr",
+          "age"
+        ]
+      }
+    }
+  ]
+}
